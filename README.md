@@ -3,7 +3,7 @@ A compilation of JavaScript and Node.js methods, patterns and utilities. Impleme
 
 ## Node
 - [ ] deepEqual()
-- [ ] Event Emitter
+- [X] Event Emitter
 
 ## Utilities
 - [ ] Array.prototype.at
