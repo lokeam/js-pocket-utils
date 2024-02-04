@@ -1,5 +1,5 @@
 # JS Utilities
-A compilation of JavaScript and Node.js methods, patterns and utilities. Implemented from scratch.
+A compilation of JavaScript and Node.js methods, patterns, utilities and test labs. Implemented from scratch.
 
 ## Node
 - [ ] deepEqual()
