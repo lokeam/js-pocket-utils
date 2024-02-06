@@ -1,35 +1,9 @@
-class AsyncRequestQueue {
-  constructor() {
-    this.queue = [];
-    this.runningTask = 0;
-    this.maxTask = 3;
-  }
+import { AsyncRequestQueue } from "./asyncReqQueue";
 
-  // enqueue and return a promise factory
-  enqueue(promiseFactory) {
-    const task = async () => {
-      this.runningTask++;
-      try {
-        await promiseFactory();
-      } finally {
-        this.runningTask--;
-      }
-    }
+// create an instance of queue
 
-    // if we've less than our max tasks, we can execute this task
-    if (this.runningTask < this.maxTask) {
-      task();
-    } else {
-      this.queue.push(task);
-    }
-  }
+// create promise factory, return promise
 
-  attemptToRunTask() {
-    if (this.queue.length === 0 || this.runningTask >= this.maxTask) {
-      return;
-    }
+  // simulate some work within the promise
 
-    const nextTask = this.queue.shift();
-    nextTask();
-  }
-}
+// add promises to queue
