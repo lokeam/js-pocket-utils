@@ -6,7 +6,7 @@ class AsyncRequestQueue {
   }
 
   // enqueue and return a promise factory
-  async enqueue(promiseFactory) {
+  enqueue(promiseFactory) {
     const task = async () => {
       this.runningTask++;
       try {
@@ -22,5 +22,14 @@ class AsyncRequestQueue {
     } else {
       this.queue.push(task);
     }
+  }
+
+  attemptToRunTask() {
+    if (this.queue.length === 0 || this.runningTask >= this.maxTask) {
+      return;
+    }
+
+    const nextTask = this.queue.shift();
+    nextTask();
   }
 }
