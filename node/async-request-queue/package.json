@@ -1,0 +1,12 @@
+{
+  "name": "js-pocket-utils",
+  "version": "1.0.0",
+  "description": "A compilation of JavaScript and Node.js methods, patterns, utilities and test labs. Implemented from scratch.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "type": "module",
+  "license": "ISC"
+}

@@ -35,4 +35,4 @@ export class AsyncRequestQueue {
     const nextTask = this.queue.shift();
     nextTask();
   }
-}
+};
