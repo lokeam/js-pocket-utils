@@ -31,3 +31,16 @@ var greet2 = fs.readFile( __dirname + '/greet-jp.txt', 'utf-8',
 );
 
 console.log('final console log: finished!');
+
+
+// fs.writeFile('example.txt', 'some text', (err) => {
+//   if (err) {
+//     console.log('fs lab, error: ',err);
+//   }
+// });
+
+fs.unlink('example.txt', (err) => {
+  if (err) {
+    console.log('error deleting file: ', error);
+  }
+})
