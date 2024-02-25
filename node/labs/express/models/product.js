@@ -1,3 +1,4 @@
+const { rejects } = require('assert');
 const fs = require('fs');
 const path = require('path');
 
@@ -13,27 +14,30 @@ module.exports = class Product {
   }
 
   async save() {
-    fs.readFile(productDbPath, 'utf-8', (err, data) => {
-      if (err) {
-        console.log('Save error from product.js model: ', err);
-        return;
-      }
-
-      const productData = JSON.parse(data);
-      productData.push({
-        name: this.name,
-        price: this.price,
-        id: productData.length + 1
-      });
-
-      fs.writeFile(productDbPath, JSON.stringify(productData), 'utf8', (err) => {
+    return new Promise((resolve, reject) => {
+      fs.readFile(productDbPath, 'utf-8', (err, data) => {
         if (err) {
-          console.log('Write File error from product.js model: ', err);
+          reject(err.message);
           return;
         }
-        console.log('Data appended sucessfully');
-      })
-    });
+
+        const productData = JSON.parse(data);
+        productData.push({
+          name: this.name,
+          price: this.price,
+          id: productData.length + 1
+        });
+
+        fs.writeFile(productDbPath, JSON.stringify(productData), 'utf8', (err) => {
+          if (err) {
+            reject(err.message);
+            return;
+          }
+          resolve('Dat appended successfully');
+        })
+      });
+    })
+
   }
 
   static findAll() {
