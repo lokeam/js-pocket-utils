@@ -1,10 +1,10 @@
 const express = require('express');
-const { addProduct } = require('../controllers/product');
+const { addProduct, deleteOne } = require('../controllers/product');
 
 const router = express.Router();
 
 router.post("/add-product", addProduct);
 
-router.delete('/delete-product', (req, res, next) => {})
+router.delete('/delete-product/:id', deleteOne)
 
 module.exports = router;

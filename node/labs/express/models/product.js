@@ -21,19 +21,19 @@ module.exports = class Product {
           return;
         }
 
-        const productData = JSON.parse(data);
-        productData.push({
+        const productDbData = JSON.parse(data);
+        productDbData.push({
           name: this.name,
           price: this.price,
-          id: productData.length + 1
+          id: productDbData.length + 1
         });
 
-        fs.writeFile(productDbPath, JSON.stringify(productData), 'utf8', (err) => {
+        fs.writeFile(productDbPath, JSON.stringify(productDbData), 'utf8', (err) => {
           if (err) {
             reject(err.message);
             return;
           }
-          resolve('Dat appended successfully');
+          resolve('Data appended successfully');
         })
       });
     })
@@ -44,5 +44,30 @@ module.exports = class Product {
     const data = fs.readFileSync(productDbPath, 'utf-8');
 
     return JSON.parse(data);
+  }
+
+  static async deleteOne(id) {
+    return new Promise((resolve, reject) => {
+      fs.readFile(productDbPath, 'utf-8', (err, data) => {
+        if (err) {
+          reject(err.message);
+          return;
+        }
+
+        const productDbData = JSON.parse(data);
+        const newProductDbData = productDbData.filter( product => {
+          return product.id !== id;
+        });
+
+        fs.writeFile(productDbPath, JSON.stringify(newProductDbData), 'utf-8', (err) => {
+          if (err) {
+            reject(err.message);
+            return;
+          }
+
+          resolve(newProductDbData);
+        })
+      });
+    });
   }
 }
