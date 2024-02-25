@@ -19,7 +19,7 @@ module.exports = class Product {
         return;
       }
 
-      const productData = JSON.parase(data);
+      const productData = JSON.parse(data);
       productData.push({
         name: this.name,
         price: this.price,
@@ -34,5 +34,11 @@ module.exports = class Product {
         console.log('Data appended sucessfully');
       })
     });
+  }
+
+  static findAll() {
+    const data = fs.readFileSync(productDbPath, 'utf-8');
+
+    return JSON.parse(data);
   }
 }

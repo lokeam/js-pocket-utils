@@ -1,16 +1,15 @@
 const express = require('express');
+const Product = require('../models/product');
 
 const router = express.Router();
 
 router.post("/add-product", (req, res, next) => {
-  console.log(req.body);
-  const product = req.body.product;
-  console.log("admin router");
-  res.send('<h1>response from the admin router</h2>');
+  const product = new Product(req.body.name, req.body.price);
+  product.save();
+
+  res.status(200).json({ message: 'Product added successfully!' });
 });
 
-router.delete('/delete-product', (req, res, next) => {
-
-})
+router.delete('/delete-product', (req, res, next) => {})
 
 module.exports = router;
